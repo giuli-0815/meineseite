@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Portfolio – Emilie Stalder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .port-hero-blob-1 { width:400px; height:400px; background:var(--pink-mid); top:-80px; right:0; }
+      .port-hero-blob-2 { width:220px; height:220px; background:var(--pink-light); bottom:-30px; left:8%; animation-delay:-2s; }
+
+      .categories-section { padding:4rem 3rem 2rem; position:relative; z-index:1; border-bottom:2px solid var(--dark); }
+      .categories-header { display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2px solid var(--dark); padding-bottom:1.2rem; margin-bottom:0; }
+      .categories-header h2 { font-family:"Syne",sans-serif; font-size:clamp(1.8rem,3vw,2.5rem); font-weight:800; color:var(--dark); text-transform:uppercase; letter-spacing:-0.02em; }
+
+      .cat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:2px solid var(--dark); border-top:none; }
+      .cat-tile { position:relative; aspect-ratio:1/1; overflow:hidden; cursor:pointer; border-right:2px solid var(--dark); transition:transform 0.2s, box-shadow 0.2s; }
+      .cat-tile:last-child { border-right:none; }
+      .cat-tile:hover { transform:translate(-3px,-3px); box-shadow:5px 5px 0 var(--dark); z-index:2; }
+      .cat-tile-bg { width:100%; height:100%; position:absolute; inset:0; transition:transform 0.4s; }
+      .cat-tile:hover .cat-tile-bg { transform:scale(1.06); }
+
+      .ct-1 { background: radial-gradient(ellipse at 80% 20%, #ff2d78 0%, transparent 60%), radial-gradient(ellipse at 20% 90%, #ffb3cc 0%, transparent 50%), #ffd6e7; }
+      .ct-2 { background: radial-gradient(ellipse at 10% 30%, #ff6fa3 0%, transparent 55%), radial-gradient(ellipse at 90% 80%, #ff2d78 0%, transparent 50%), #ffc0d8; }
+      .ct-4 { background: radial-gradient(ellipse at 70% 70%, #ff2d78 0%, transparent 55%), radial-gradient(ellipse at 10% 10%, #ffb3cc 0%, transparent 50%), #ffd0e8; }
+
+      .cat-tile-label { position:absolute; bottom:0; left:0; right:0; background:var(--dark); padding:1rem 1.2rem; border-top:2px solid var(--dark); display:flex; justify-content:space-between; align-items:center; }
+      .cat-tile-name { font-family:"Syne",sans-serif; font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:white; }
+      .cat-tile-arrow { color:var(--pink); font-size:1rem; transition:transform 0.2s; }
+      .cat-tile:hover .cat-tile-arrow { transform:translateX(4px); }
+
+      .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:1000; padding:5rem 3rem 3rem; overflow-y:auto; }
+      .lightbox.open { display:block; }
+      .lightbox-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; position:sticky; top:0; background:rgba(0,0,0,0.85); padding:1rem 0; z-index:10; }
+      .lightbox-title { font-family:"Syne",sans-serif; font-size:1.2rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:white; }
+      .lightbox-close { background:white; border:none; cursor:pointer; font-family:"Syne",sans-serif; font-size:0.75rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; padding:0.6rem 1.2rem; color:var(--dark); transition:background 0.2s; }
+      .lightbox-close:hover { background:var(--pink); color:white; }
+
+      .lightbox-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+      .lb-item { aspect-ratio:1/1; border:2px solid rgba(255,255,255,0.15); overflow:hidden; position:relative; background:rgba(255,255,255,0.05); display:flex; align-items:center; justify-content:center; }
+      .lb-item img { width:100%; height:100%; object-fit:cover; }
+
+      .video-section { padding:5rem 3rem 6rem; position:relative; z-index:1; }
+      .video-header { display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2px solid var(--dark); padding-bottom:1.2rem; margin-bottom:3rem; }
+      .video-header h2 { font-family:"Syne",sans-serif; font-size:clamp(1.8rem,3vw,2.5rem); font-weight:800; color:var(--dark); text-transform:uppercase; letter-spacing:-0.02em; }
+      .video-wrap { border:2px solid var(--dark); position:relative; overflow:hidden; max-width:900px; }
+      .video-wrap video { width:100%; display:block; }
+      .video-caption { background:var(--dark); padding:1.2rem 1.5rem; border-top:2px solid var(--dark); display:flex; justify-content:space-between; align-items:center; }
+      .video-caption-title { font-family:"Syne",sans-serif; font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:white; }
+      .video-caption-sub { font-size:0.75rem; color:rgba(255,255,255,0.4); margin-top:0.2rem; font-family:"DM Sans",sans-serif; }
+
+      @media(max-width:900px){
+        .categories-section,.video-section{ padding:3rem 1.5rem; }
+        .cat-grid{ grid-template-columns:repeat(2,1fr); }
+        .cat-tile:nth-child(2){ border-right:none; }
+        .lightbox{ padding:4rem 1rem 2rem; }
+        .lightbox-grid{ grid-template-columns:repeat(2,1fr); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <header>
+      <a href="index.html" class="logo">Emilie <span>Stalder</span></a>
+      <nav><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="ueber-mich.html">Über mich</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="kontakt.html" class="nav-cta">Kontakt</a></li>
+      </ul></nav>
+    </header>
+
+    <section class="page-hero">
+      <div class="blob port-hero-blob-1"></div>
+      <div class="blob port-hero-blob-2"></div>
+      <div class="page-hero-content">
+        <div class="eyebrow"><span class="dot"></span> Meine Arbeiten</div>
+        <h1>Mein<br /><em>Portfolio.</em></h1>
+        <p class="sub">Fotos, Videos und Webprojekte – klick dich durch meine Arbeiten.</p>
+      </div>
+    </section>
+
+    <section class="categories-section">
+      <div class="categories-header reveal">
+        <h2>Kategorien</h2>
+        <span class="section-tag">Klick zum Öffnen</span>
+      </div>
+      <div class="cat-grid reveal">
+        <div class="cat-tile" onclick="openLightbox('fotos')">
+          <div class="cat-tile-bg ct-1"></div>
+          <div class="cat-tile-label">
+            <span class="cat-tile-name">Fotos</span>
+            <span class="cat-tile-arrow">→</span>
+          </div>
+        </div>
+        <div class="cat-tile" onclick="openLightbox('videos')">
+          <div class="cat-tile-bg ct-2"></div>
+          <div class="cat-tile-label">
+            <span class="cat-tile-name">Videos</span>
+            <span class="cat-tile-arrow">→</span>
+          </div>
+        </div>
+        <div class="cat-tile" onclick="openLightbox('webseiten')">
+          <div class="cat-tile-bg ct-4"></div>
+          <div class="cat-tile-label">
+            <span class="cat-tile-name">Webseiten</span>
+            <span class="cat-tile-arrow">→</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="video-section">
+      <div class="video-header reveal">
+        <h2>Bewerbungsvideo</h2>
+        <span class="section-tag">2026</span>
+      </div>
+      <div class="video-wrap reveal">
+        <video controls>
+          <source src="video/26_Bewerbungsvideo_V2.mp4" type="video/mp4" />
+        </video>
+        <div class="video-caption">
+          <div>
+            <div class="video-caption-title">Emilie Stalder – Bewerbungsvideo</div>
+            <div class="video-caption-sub">Mediamatikerin EFZ · 1. Lehrjahr · 2026</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIGHTBOXES -->
+    <div class="lightbox" id="lb-fotos">
+      <div class="lightbox-header">
+        <span class="lightbox-title">Fotos</span>
+        <button class="lightbox-close" onclick="closeLightbox()">✕ Schliessen</button>
+      </div>
+      <div class="lightbox-grid">
+        <div class="lb-item"><img src="img/color-hous.JPG" alt="Color House"></div>
+        <div class="lb-item"><img src="img/NinaP.jpg" alt="Nina P"></div>
+        <div class="lb-item"><img src="img/beach-rescue.png" alt="Beach Rescue"></div>
+        <div class="lb-item"><img src="img/HousseA.jpg" alt="Housse A"></div>
+        <div class="lb-item"><img src="img/NinaA.jpg" alt="Nina A"></div>
+        <div class="lb-item"><img src="img/GUBI.jpg" alt="GUBI"></div>
+      </div>
+    </div>
+
+    <div class="lightbox" id="lb-videos">
+      <div class="lightbox-header">
+        <span class="lightbox-title">Videos</span>
+        <button class="lightbox-close" onclick="closeLightbox()">✕ Schliessen</button>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;">
+        <div style="border:2px solid rgba(255,255,255,0.15);">
+          <video src="video/09_werlügtbesser04.mp4" controls style="width:100%; display:block;"></video>
+        </div>
+        <div style="border:2px solid rgba(255,255,255,0.15);">
+          <video src="video/alia.mp4" controls style="width:100%; display:block;"></video>
+        </div>
+        <div style="border:2px solid rgba(255,255,255,0.15);">
+          <video src="video/anhang.mp4" controls style="width:100%; display:block;"></video>
+        </div>
+      </div>
+    </div>
+
+    <div class="lightbox" id="lb-webseiten">
+      <div class="lightbox-header">
+        <span class="lightbox-title">Webseiten</span>
+        <button class="lightbox-close" onclick="closeLightbox()">✕ Schliessen</button>
+      </div>
+      <div class="lightbox-grid">
+        <div class="lb-item"><img src="img/SunshineS.png" alt="SunshineS"></div>
+        <div class="lb-item"><img src="img/Rsunshine.png" alt="Rsunshine"></div>
+        <div class="lb-item"><img src="img/coastto.png" alt="Coast to"></div>
+        <div class="lb-item"><img src="img/coasttocoast.png" alt="Coast to Coast"></div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2026 Emilie Stalder · Gemacht mit <span class="footer-heart">♥</span></p>
+      <nav class="footer-nav">
+        <a href="ueber-mich.html">Über mich</a>
+        <a href="skills.html">Skills</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      function openLightbox(cat) {
+        document.querySelectorAll('.lightbox').forEach(lb => lb.classList.remove('open'));
+        document.getElementById('lb-' + cat).classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox() {
+        document.querySelectorAll('.lightbox').forEach(lb => lb.classList.remove('open'));
+        document.body.style.overflow = '';
+      }
+      document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+    </script>
+  </body>
+</html>

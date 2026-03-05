@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Über mich – Emilie Stalder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .about-hero-blob-1 { width:450px; height:450px; background:var(--pink-mid); top:-100px; right:-80px; }
+    .about-hero-blob-2 { width:260px; height:260px; background:var(--pink-light); bottom:0; left:4%; animation-delay:-4s; }
+
+    .about-main { padding:5rem 3rem; display:grid; grid-template-columns:1fr 1.5fr; gap:5rem; align-items:start; position:relative; z-index:1; }
+
+    .photo-wrap { position:sticky; top:7rem; }
+    .photo-frame { width:100%; aspect-ratio:3/4; border:3px solid var(--dark); overflow:hidden; position:relative; background:linear-gradient(160deg, var(--pink-soft) 0%, var(--pink-light) 100%); }
+    .photo-frame img { width:100%; height:100%; object-fit:cover; display:block; }
+    .photo-placeholder { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-size:0.8rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(0,0,0,0.3); }
+    .photo-label { background:var(--dark); color:white; padding:0.6rem 1.2rem; font-family:'Syne',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; text-align:center; border:3px solid var(--dark); border-top:none; }
+
+    .sticker { position:absolute; background:white; border:2px solid var(--dark); padding:0.5rem 0.9rem; font-family:'Syne',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; box-shadow:3px 3px 0 var(--dark); animation:float 5s ease-in-out infinite; white-space:nowrap; }
+    .s1 { bottom:-1rem; left:-1rem; background:var(--pink-soft); animation-delay:-1s; }
+    .s2 { top:1.5rem; right:-1.5rem; background:var(--sun); animation-delay:-3s; }
+
+    .about-text h2 { font-family:'Syne',sans-serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:800; color:var(--dark); text-transform:uppercase; letter-spacing:-0.02em; margin-bottom:0.4rem; line-height:1.0; }
+    .about-text h2 em { font-family:'Instrument Serif',serif; font-style:italic; font-weight:400; text-transform:none; color:var(--pink-deep); }
+    .about-text .section-rule { width:100%; height:2px; background:var(--dark); margin-bottom:1.8rem; }
+    .about-text p { font-size:0.95rem; line-height:1.9; color:#555; margin-bottom:1.2rem; }
+    .about-text p strong { color:var(--dark); font-weight:700; }
+
+    .chips { display:flex; flex-wrap:wrap; gap:0.5rem; margin:1.8rem 0; }
+    .chip { padding:0.35rem 0.9rem; border:2px solid var(--dark); font-family:'Syne',sans-serif; font-size:0.68rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--dark); background:white; }
+    .chip:nth-child(odd) { background:var(--pink-soft); }
+
+    .facts-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:2rem; }
+    .fact-box { border:2px solid var(--dark); padding:1.2rem; background:white; text-decoration:none; color:inherit; display:block; }
+    .fact-box .num { font-family:'Syne',sans-serif; font-size:1.8rem; font-weight:800; color:var(--pink-deep); display:block; }
+    .fact-box .label { font-family:'Syne',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-top:0.2rem; }
+    a.fact-box:hover { background:var(--pink-soft); }
+
+    .timeline-section { padding:5rem 3rem; background:var(--dark); position:relative; z-index:1; }
+    .timeline-section h2 { font-family:'Syne',sans-serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:800; color:white; text-transform:uppercase; letter-spacing:-0.02em; margin-bottom:0.4rem; }
+    .tl-rule { width:100%; height:2px; background:rgba(255,255,255,0.15); margin-bottom:3rem; }
+    .timeline { max-width:700px; }
+    .tl-item { display:grid; grid-template-columns:140px 1fr; gap:2rem; margin-bottom:2rem; padding-bottom:2rem; border-bottom:1px solid rgba(255,255,255,0.08); }
+    .tl-item:last-child { border-bottom:none; }
+    .tl-year { font-family:'Syne',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--pink-light); padding-top:0.2rem; }
+    .tl-title { font-family:'Syne',sans-serif; font-size:1rem; font-weight:800; color:white; text-transform:uppercase; letter-spacing:0.03em; margin-bottom:0.4rem; }
+    .tl-desc { font-size:0.85rem; color:rgba(255,255,255,0.45); line-height:1.65; }
+
+    @media(max-width:900px){
+      .about-main{grid-template-columns:1fr;padding:4rem 1.5rem;gap:3rem;}
+      .photo-wrap{position:static;}
+      .timeline-section{padding:4rem 1.5rem;}
+      .facts-grid{grid-template-columns:1fr 1fr;}
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <header>
+    <a href="index.html" class="logo">Emilie <span>Stalder</span></a>
+    <nav><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ueber-mich.html" class="active">Über mich</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="kontakt.html" class="nav-cta">Kontakt</a></li>
+    </ul></nav>
+  </header>
+
+  <section class="page-hero">
+    <div class="blob about-hero-blob-1"></div>
+    <div class="blob about-hero-blob-2"></div>
+    <div class="page-hero-content">
+      <div class="eyebrow"><span class="dot"></span> Über mich</div>
+      <h1>Hallo,<br>ich bin <em>Emilie.</em></h1>
+      <p class="sub">Mediamatikerin im 1. Lehrjahr – mit Leidenschaft für Kreativität, Bilder und Geschichten.</p>
+    </div>
+  </section>
+
+  <section class="about-main">
+    <div class="photo-wrap reveal">
+      <div style="position:relative;">
+        <div class="photo-frame">
+          <img src="img/PB.jpg" alt="Emilie Stalder" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="photo-placeholder" style="display:none;">Emilie<br>Stalder</div>
+        </div>
+        <div class="photo-label">Emilie Stalder · Mediamatikerin</div>
+        <div class="sticker s1">◇ Video & Film</div>
+      </div>
+    </div>
+
+    <div class="about-text reveal">
+      <span class="section-tag">Meine Geschichte</span>
+      <h2>Kreativ,<br>neugierig &<br><em>leidenschaftlich.</em></h2>
+      <div class="section-rule"></div>
+
+      <p>Hallo! Ich bin Emilie – eine angehende <strong>Mediamatikerin EFZ</strong> im 1. Lehrjahr. Seit ich das erste Mal eine Kamera in der Hand hatte, war mir klar: Ich will Geschichten erzählen.</p>
+      <p>Was mich antreibt ist die Kombination aus <strong>Kreativität und Technik</strong>. Ob ein Video schneiden, eine Animation erstellen oder ein Bild in Lightroom zum Leuchten bringen – bei jedem Projekt gebe ich 100%.</p>
+      <p>Neben der Ausbildung reise ich leidenschaftlich gerne – mein USA-Roadtrip hat mir gezeigt, wie viel es zu entdecken gibt.</p>
+
+      <div class="chips">
+        <span class="chip">Videoschnitt</span>
+        <span class="chip">Motion Graphics</span>
+        <span class="chip">Fotografie</span>
+        <span class="chip">Grafikdesign</span>
+        <span class="chip">Storytelling</span>
+      </div>
+
+      <div class="facts-grid">
+        <div class="fact-box"><span class="num">1.</span><span class="label">Lehrjahr EFZ</span></div>
+        <div class="fact-box"><span class="num">4+</span><span class="label">Adobe Programme</span></div>
+        <a href="https://www.polarsteps.com/EmilieStalder" target="_blank" class="fact-box">
+          <span class="num">🌍</span><span class="label">USA, Südafrika, Australien Roadtrips</span>
+        </a>
+        <div class="fact-box"><span class="num">∞</span><span class="label">Ideen & Energie</span></div>
+      </div>
+
+      <div style="margin-top:2.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="portfolio.html" class="btn btn-dark">Mein Portfolio →</a>
+        <a href="kontakt.html" class="btn btn-outline">Kontakt</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee-wrap"><div class="marquee-track">
+    <span>Kreativ</span><span class="acc">✦</span><span>Engagiert</span><span class="acc">✦</span>
+    <span>Lernbereit</span><span class="acc">✦</span><span>Teamplayer</span><span class="acc">✦</span>
+    <span>Pünktlich</span><span class="acc">✦</span><span>Motiviert</span><span class="acc">✦</span>
+    <span>Kreativ</span><span class="acc">✦</span><span>Engagiert</span><span class="acc">✦</span>
+    <span>Lernbereit</span><span class="acc">✦</span><span>Teamplayer</span><span class="acc">✦</span>
+    <span>Pünktlich</span><span class="acc">✦</span><span>Motiviert</span><span class="acc">✦</span>
+  </div></div>
+
+  <section class="timeline-section">
+   <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-year">Jan. 2026 – Heute</div>
+        <div class="tl-body">
+          <div class="tl-title">Loop</div>
+          <div class="tl-desc">Aktueller Einsatz im Rahmen der Mediamatik-Ausbildung.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">Aug. 2025 – Jan. 2026</div>
+        <div class="tl-body">
+          <div class="tl-title">cablex · Socialmedia Team</div>
+          <div class="tl-desc">Mitarbeit im Social-Media-Team bei cablex.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2025</div>
+        <div class="tl-body">
+          <div class="tl-title">Lehrbeginn Swisscom</div>
+          <div class="tl-desc">Start der Ausbildung zur Mediamatikerin EFZ bei Swisscom.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2022 – 2025</div>
+        <div class="tl-body">
+          <div class="tl-title">Oberstufe</div>
+          <div class="tl-desc"></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2020 – 2022</div>
+        <div class="tl-body">
+          <div class="tl-title">Mittelstufe</div>
+          <div class="tl-desc"></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2016 – 2020</div>
+        <div class="tl-body">
+          <div class="tl-title">Unterstufe</div>
+          <div class="tl-desc"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Emilie Stalder · Gemacht mit <span class="footer-heart">♥</span></p>
+    <nav class="footer-nav">
+      <a href="ueber-mich.html">Über mich</a>
+      <a href="skills.html">Skills</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
