@@ -8,133 +8,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
   <style>
-    /* HERO */
     .hero { min-height:100vh; padding:9rem 3rem 5rem; position:relative; overflow:hidden; display:flex; align-items:center; z-index:1; }
     .hero-blob-1 { width:600px; height:600px; background:var(--pink-mid); top:-150px; right:-120px; }
     .hero-blob-2 { width:300px; height:300px; background:var(--pink-light); bottom:-60px; left:2%; animation-delay:-3s; }
     .hero-content { position:relative; z-index:2; max-width:960px; }
-
-    .hero h1 {
-      font-family:'Syne',sans-serif; font-weight:800;
-      font-size:clamp(4rem,10vw,8.5rem);
-      line-height:0.88; letter-spacing:-0.03em;
-      color:var(--dark); margin-bottom:1.8rem;
-      text-transform:uppercase;
-      animation:slideUp 0.8s ease 0.15s both;
-    }
-    .hero h1 .italic-name {
-      font-family:'Instrument Serif',serif; font-style:italic;
-      font-weight:400; text-transform:none; color:var(--pink-deep);
-      font-size:0.85em; letter-spacing:0em;
-    }
-    .hero h1 .line-sub {
-      display:block; font-size:0.38em; font-weight:700;
-      letter-spacing:0.22em; color:var(--pink-mid); text-transform:uppercase;
-      font-family:'Syne',sans-serif; margin-top:0.5rem;
-    }
-
+    .hero h1 { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(4rem,10vw,8.5rem); line-height:0.88; letter-spacing:-0.03em; color:var(--dark); margin-bottom:1.8rem; text-transform:uppercase; animation:slideUp 0.8s ease 0.15s both; }
+    .hero h1 .italic-name { font-family:'Instrument Serif',serif; font-style:italic; font-weight:400; text-transform:none; color:var(--pink-deep); font-size:0.85em; letter-spacing:0em; }
+    .hero h1 .line-sub { display:block; font-size:0.38em; font-weight:700; letter-spacing:0.22em; color:var(--pink-mid); text-transform:uppercase; font-family:'Syne',sans-serif; margin-top:0.5rem; }
     .hero-rule { width:80px; height:3px; background:var(--dark); margin-bottom:1.5rem; animation:slideUp 0.8s ease 0.28s both; }
     .hero-sub { font-size:1.05rem; line-height:1.8; color:#555; max-width:48ch; margin-bottom:2.8rem; animation:slideUp 0.8s ease 0.35s both; }
     .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; animation:slideUp 0.8s ease 0.45s both; }
-
-    /* Portrait Bild Styling */
-    .hero-portrait { 
-      position:absolute; 
-      right:5%; 
-      bottom:0; 
-      height:85%; 
-      max-height:750px; 
-      object-fit:contain; 
-      z-index:1; 
-      pointer-events:none; 
-      animation:slideUp 1s ease 0.5s both;
-    }
+    .hero-portrait { position:absolute; right:5%; bottom:0; height:85%; max-height:750px; object-fit:contain; z-index:1; pointer-events:none; }
     @media(max-width:900px){ .hero-portrait { display:none; } }
-
-    /* PREVIEW CARDS */
     .preview { padding:6rem 3rem; border-bottom:2px solid var(--dark); }
-    .preview-heading {
-      font-family:'Syne',sans-serif; font-size:clamp(2rem,4vw,3rem);
-      font-weight:800; color:var(--dark); text-transform:uppercase;
-      letter-spacing:-0.01em; margin-bottom:0.4rem;
-    }
-    .preview-rule { width:100%; height:2px; background:var(--dark); margin-bottom:0; }
-    .preview-grid {
-      display:grid; grid-template-columns:repeat(3,1fr);
-      gap:0; border:2px solid var(--dark); border-top:none;
-    }
-    .preview-card {
-      text-decoration:none; color:inherit; display:block;
-      border-right:2px solid var(--dark);
-      transition:background 0.2s, transform 0.15s, box-shadow 0.15s;
-    }
-    .preview-card:last-child { border-right:none; }
-    .preview-card:hover {
-      background:#fff0f5;
-      transform:translate(-3px,-3px);
-      box-shadow:5px 5px 0 var(--dark);
-    }
-    .preview-card-img {
-      height:200px; display:flex; align-items:center; justify-content:center;
-      border-bottom:2px solid var(--dark);
-    }
-    .sym { font-size:4rem; opacity:0.5; font-family:'Instrument Serif',serif; color:white; }
-    .pc-1 {
-      background:
-        radial-gradient(ellipse at 80% 20%, #FF2D78 0%, transparent 60%),
-        radial-gradient(ellipse at 20% 90%, #FFB3CC 0%, transparent 50%),
-        #FFD6E7;
-    }
-    .pc-2 {
-      background:
-        radial-gradient(ellipse at 10% 30%, #FF6FA3 0%, transparent 55%),
-        radial-gradient(ellipse at 90% 80%, #FF2D78 0%, transparent 50%),
-        #FFC0D8;
-    }
-    .pc-3 {
-      background:
-        radial-gradient(ellipse at 50% 10%, #FFB3CC 0%, transparent 60%),
-        radial-gradient(ellipse at 30% 85%, #FF2D78 0%, transparent 45%),
-        #FFE0ED;
-    }
+    .preview-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:2px solid var(--dark); border-top:none; }
+    .preview-card { text-decoration:none; color:inherit; display:block; border-right:2px solid var(--dark); transition:background 0.2s; }
+    .preview-card-img { height:200px; display:flex; align-items:center; justify-content:center; border-bottom:2px solid var(--dark); }
+    .pc-1 { background: #FFD6E7; } .pc-2 { background: #FFC0D8; } .pc-3 { background: #FFE0ED; }
     .preview-card-body { padding:1.8rem; }
-    .preview-card-label {
-      font-family:'Syne',sans-serif; font-size:0.6rem; font-weight:700;
-      letter-spacing:0.18em; text-transform:uppercase; color:var(--pink); margin-bottom:0.5rem;
-    }
-    .preview-card-title {
-      font-family:'Syne',sans-serif; font-size:1rem; font-weight:800;
-      text-transform:uppercase; color:var(--dark); margin-bottom:0.5rem; letter-spacing:-0.01em;
-    }
-    .preview-card-desc { font-size:0.82rem; color:var(--muted); line-height:1.65; }
-
-    @media(max-width:900px){
-      .preview{ padding:4rem 1.5rem; }
-      .preview-grid{ grid-template-columns:1fr; }
-      .preview-card{ border-right:none; border-bottom:2px solid var(--dark); }
-      .preview-card:last-child{ border-bottom:none; }
-    }
-
-    /* CTA BANNER */
-    .cta-banner { margin:0 3rem 6rem; background:var(--dark); border-radius:4px; padding:4rem; display:flex; justify-content:space-between; align-items:center; gap:2rem; position:relative; overflow:hidden; z-index:1; border:2px solid var(--dark); }
-    .cta-banner::before { content:'EMILIE'; position:absolute; font-family:'Syne',sans-serif; font-size:10rem; font-weight:800; color:rgba(255,255,255,0.03); right:-2rem; top:50%; transform:translateY(-50%); letter-spacing:-0.04em; text-transform:uppercase; pointer-events:none; }
-    .cta-banner h2 { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:800; color:white; text-transform:uppercase; letter-spacing:-0.02em; }
-    .cta-banner h2 span { color:var(--pink-light); }
-    .cta-banner p { color:rgba(255,255,255,0.45); margin-top:0.5rem; font-size:0.9rem; }
-    .cta-banner-btns { display:flex; gap:1rem; flex-shrink:0; }
-
-    @media(max-width:900px){
-      .hero{padding:7rem 1.5rem 4rem;}
-      .preview{padding:4rem 1.5rem;}
-      .preview-grid{grid-template-columns:1fr;}
-      .cta-banner{margin:0 1.5rem 4rem;flex-direction:column;text-align:center;padding:2.5rem 1.5rem;}
-    }
+    .cta-banner { margin:0 3rem 6rem; background:var(--dark); border-radius:4px; padding:4rem; display:flex; justify-content:space-between; align-items:center; border:2px solid var(--dark); color:white; position:relative; overflow:hidden; }
   </style>
 </head>
 <body>
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
   <header>
     <a href="index.html" class="logo">Emilie <span>Stalder</span></a>
     <nav><ul>
@@ -151,11 +46,7 @@
     <div class="blob hero-blob-2"></div>
     <div class="hero-content">
       <div class="eyebrow"><span class="dot"></span> Offen für Bewerbungen 2026</div>
-      <h1>
-        Hallo,<br>
-        ich bin <span class="italic-name">Emilie.</span>
-        <span class="line-sub">Mediamatikerin EFZ · 1. Lehrjahr</span>
-      </h1>
+      <h1>Hallo,<br>ich bin <span class="italic-name">Emilie.</span><span class="line-sub">Mediamatikerin EFZ · 1. Lehrjahr</span></h1>
       <div class="hero-rule"></div>
       <p class="hero-sub">Ich bringe Ideen zum Leben – mit Bewegtbild, Design und einer Menge Begeisterung.</p>
       <div class="hero-btns">
@@ -163,74 +54,9 @@
         <a href="ueber-mich.html" class="btn btn-outline">Mehr über mich</a>
       </div>
     </div>
-    <img src="mein-bild.jpg" alt="Emilie Stalder" class="hero-portrait">
+    <img src="_PB.jpg" alt="Emilie Stalder" class="hero-portrait">
   </section>
 
-  <div class="marquee-wrap"><div class="marquee-track">
-    <span>After Effects</span><span class="acc">✦</span><span>Premiere Pro</span><span class="acc">✦</span>
-    <span>Photoshop</span><span class="acc">✦</span><span>Lightroom</span><span class="acc">✦</span>
-    <span>Mediamatikerin EFZ</span><span class="acc">✦</span><span>Motion Design</span><span class="acc">✦</span>
-    <span>Videoschnitt</span><span class="acc">✦</span><span>Bildbearbeitung</span><span class="acc">✦</span>
-    <span>After Effects</span><span class="acc">✦</span><span>Premiere Pro</span><span class="acc">✦</span>
-    <span>Photoshop</span><span class="acc">✦</span><span>Lightroom</span><span class="acc">✦</span>
-    <span>Mediamatikerin EFZ</span><span class="acc">✦</span><span>Motion Design</span><span class="acc">✦</span>
-    <span>Videoschnitt</span><span class="acc">✦</span><span>Bildbearbeitung</span><span class="acc">✦</span>
-  </div></div>
-
-  <section class="preview">
-    <div class="reveal">
-      <span class="section-tag">Entdecke mehr</span>
-      <h2 class="preview-heading">Was dich erwartet</h2>
-      <div class="preview-rule"></div>
-    </div>
-    <div class="preview-grid reveal">
-      <a href="ueber-mich.html" class="preview-card">
-        <div class="preview-card-img pc-1"><span class="sym">◇</span></div>
-        <div class="preview-card-body">
-          <p class="preview-card-label">Über mich</p>
-          <h3 class="preview-card-title">Wer ich bin</h3>
-          <p class="preview-card-desc">Lern mich kennen – meine Geschichte, meine Leidenschaft und was mich antreibt.</p>
-        </div>
-      </a>
-      <a href="portfolio.html" class="preview-card">
-        <div class="preview-card-img pc-2"><span class="sym">✦</span></div>
-        <div class="preview-card-body">
-          <p class="preview-card-label">Portfolio</p>
-          <h3 class="preview-card-title">Meine Arbeiten</h3>
-          <p class="preview-card-desc">Videos, Grafiken, Fotos – hier siehst du was ich kann.</p>
-        </div>
-      </a>
-      <a href="skills.html" class="preview-card">
-        <div class="preview-card-img pc-3"><span class="sym">○</span></div>
-        <div class="preview-card-body">
-          <p class="preview-card-label">Skills</p>
-          <h3 class="preview-card-title">Was ich beherrsche</h3>
-          <p class="preview-card-desc">After Effects, Premiere Pro, Photoshop, Lightroom und mehr.</p>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <div class="cta-banner reveal">
-    <div>
-      <h2>Bereit <span>zusammenzuarbeiten?</span></h2>
-      <p>Ich freue mich über spannende Projekte und neue Kontakte!</p>
-    </div>
-    <div class="cta-banner-btns">
-      <a href="kontakt.html" class="btn btn-pink">Schreib mir →</a>
-      <a href="portfolio.html" class="btn" style="border:2px solid rgba(255,255,255,0.25);color:white;">Portfolio</a>
-    </div>
-  </div>
-
-  <footer>
-    <p>© 2026 Emilie Stalder · Gemacht mit <span class="footer-heart">♥</span></p>
-    <nav class="footer-nav">
-      <a href="ueber-mich.html">Über mich</a>
-      <a href="skills.html">Skills</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="kontakt.html">Kontakt</a>
-    </nav>
-  </footer>
   <script src="script.js"></script>
 </body>
 </html>
